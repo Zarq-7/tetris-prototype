@@ -1,0 +1,46 @@
+[gd_scene format=4 uid="uid://cayu8k6y8gehp"]
+
+[ext_resource type="Script" uid="uid://n8y8vde4xrji" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://lgi7ji5n847y" path="res://assets/blocks.svg" id="2_0wfyh"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sugp2"]
+texture = ExtResource("2_0wfyh")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_njsjv"]
+tile_size = Vector2i(32, 32)
+sources/2 = SubResource("TileSetAtlasSource_sugp2")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wfyh"]
+texture = ExtResource("2_0wfyh")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0wfyh"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_0wfyh")
+
+[node name="Node2D" type="Node2D" unique_id=1345478056]
+script = ExtResource("1_o5qli")
+
+[node name="Board" type="TileMapLayer" parent="." unique_id=1409761577]
+tile_map_data = PackedByteArray("AAAAAAAAAgAHAAAAAAAAAAEAAgAHAAAAAAAAAAIAAgAHAAAAAAAAAAMAAgAHAAAAAAAAAAQAAgAHAAAAAAABAAAAAgAHAAAAAAACAAAAAgAHAAAAAAADAAAAAgAHAAAAAAAEAAAAAgAHAAAAAAAFAAAAAgAHAAAAAAAGAAAAAgAHAAAAAAAHAAAAAgAHAAAAAAAIAAAAAgAHAAAAAAAJAAAAAgAHAAAAAAAKAAAAAgAHAAAAAAALAAAAAgAHAAAAAAALAAEAAgAHAAAAAAALAAIAAgAHAAAAAAALAAMAAgAHAAAAAAALAAQAAgAHAAAAAAALAAUAAgAHAAAAAAALAAYAAgAHAAAAAAALAAcAAgAHAAAAAAALAAgAAgAHAAAAAAALAAkAAgAHAAAAAAALAAoAAgAHAAAAAAALAAsAAgAHAAAAAAALAAwAAgAHAAAAAAALAA0AAgAHAAAAAAALAA4AAgAHAAAAAAALAA8AAgAHAAAAAAALABAAAgAHAAAAAAALABEAAgAHAAAAAAALABIAAgAHAAAAAAALABMAAgAHAAAAAAALABQAAgAHAAAAAAALABUAAgAHAAAAAAAAAAUAAgAHAAAAAAAAAAYAAgAHAAAAAAAAAAcAAgAHAAAAAAAAAAgAAgAHAAAAAAAAAAkAAgAHAAAAAAAAAAoAAgAHAAAAAAAAAAsAAgAHAAAAAAAAAAwAAgAHAAAAAAAAAA0AAgAHAAAAAAAAAA4AAgAHAAAAAAAAAA8AAgAHAAAAAAAAABAAAgAHAAAAAAAAABEAAgAHAAAAAAAAABIAAgAHAAAAAAAAABMAAgAHAAAAAAAAABQAAgAHAAAAAAAAABUAAgAHAAAAAAABABUAAgAHAAAAAAACABUAAgAHAAAAAAADABUAAgAHAAAAAAAEABUAAgAHAAAAAAAFABUAAgAHAAAAAAAGABUAAgAHAAAAAAAHABUAAgAHAAAAAAAIABUAAgAHAAAAAAAJABUAAgAHAAAAAAAKABUAAgAHAAAAAAA=")
+tile_set = SubResource("TileSet_njsjv")
+
+[node name="Active" type="TileMapLayer" parent="." unique_id=126720242]
+tile_set = SubResource("TileSet_0wfyh")

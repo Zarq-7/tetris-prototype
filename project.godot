@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Tetris prototype"
+run/main_scene="uid://cayu8k6y8gehp"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
 
 [debug]
 
@@ -25,10 +25,12 @@ gdscript/warnings/unsafe_call_argument=1
 
 [display]
 
-window/size/viewport_width=650
-window/size/viewport_height=704
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/cheatsheet_viewer/plugin.cfg")
 
 [physics]
 
