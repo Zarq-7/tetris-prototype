@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="32" fill="none" viewBox="0 0 256 32">
+  <g clip-path="url(#a)">
+    <path fill="#fff" d="M0 0h256v32H0z"/>
+    <path fill="#0000CE" d="M0 0h32v32H0V0Z"/>
+    <path fill="#6969E3" d="M16 16 0 0h32L16 16Z"/>
+    <path fill="#151576" d="m16 16 16 16H0l16-16Z"/>
+    <path fill="#151576" d="M16 16 32 0v32L16 16Z"/>
+    <path fill="#0000F2" d="M3 3h26v26H3V3Z"/>
+    <path fill="#CE00CE" d="M32 0h32v32H32V0Z"/>
+    <path fill="#E369E3" d="M48 16 32 0h32L48 16Z"/>
+    <path fill="#761576" d="m48 16 16 16H32l16-16Z"/>
+    <path fill="#761576" d="M48 16 64 0v32L48 16Z"/>
+    <path fill="#F100F2" d="M35 3h26v26H35V3Z"/>
+    <path fill="#00CE00" d="M64 0h32v32H64V0Z"/>
+    <path fill="#69D669" d="M80 16 64 0h32L80 16Z"/>
+    <path fill="#157615" d="m80 16 16 16H64l16-16Z"/>
+    <path fill="#157615" d="M80 16 96 0v32L80 16Z"/>
+    <path fill="#00F200" d="M67 3h26v26H67V3Z"/>
+    <path fill="#CECE00" d="M96 0h32v32H96V0Z"/>
+    <path fill="#D6D669" d="M112 16 96 0h32l-16 16Z"/>
+    <path fill="#767615" d="m112 16 16 16H96l16-16Z"/>
+    <path fill="#767615" d="m112 16 16-16v32l-16-16Z"/>
+    <path fill="#F2F200" d="M99 3h26v26H99V3Z"/>
+    <path fill="#D57200" d="M128 0h32v32h-32V0Z"/>
+    <path fill="#FFB662" d="M144 16 128 0h32l-16 16Z"/>
+    <path fill="#9C4800" d="m144 16 16 16h-32l16-16Z"/>
+    <path fill="#9C4800" d="m144 16 16-16v32l-16-16Z"/>
+    <path fill="#F80" d="M131 3h26v26h-26V3Z"/>
+    <path fill="#00CECE" d="M160 0h32v32h-32V0Z"/>
+    <path fill="#69D6D6" d="M176 16 160 0h32l-16 16Z"/>
+    <path fill="#157676" d="m176 16 16 16h-32l16-16Z"/>
+    <path fill="#157676" d="m176 16 16-16v32l-16-16Z"/>
+    <path fill="#00F2F2" d="M163 3h26v26h-26V3Z"/>
+    <path fill="#CE0000" d="M192 0h32v32h-32V0Z"/>
+    <path fill="#D96969" d="M208 16 192 0h32l-16 16Z"/>
+    <path fill="#761515" d="m208 16 16 16h-32l16-16Z"/>
+    <path fill="#761515" d="m208 16 16-16v32l-16-16Z"/>
+    <path fill="#F10000" d="M195 3h26v26h-26V3Z"/>
+    <path fill="#AEAEAE" d="M224 0h32v32h-32V0Z"/>
+    <path fill="#D4D1D1" d="M240 16 224 0h32l-16 16Z"/>
+    <path fill="#686868" d="m240 16 16 16h-32l16-16Z"/>
+    <path fill="#686868" d="m240 16 16-16v32l-16-16Z"/>
+    <path fill="#8C8C8C" d="M227 3h26v26h-26V3Z"/>
+  </g>
+  <defs>
+    <clipPath id="a">
+      <path fill="#fff" d="M0 0h256v32H0z"/>
+    </clipPath>
+  </defs>
+</svg>
