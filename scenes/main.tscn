@@ -39,6 +39,11 @@ sources/0 = SubResource("TileSetAtlasSource_0wfyh")
 [node name="Node2D" type="Node2D" unique_id=1345478056]
 script = ExtResource("1_o5qli")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1408225233]
+offset_right = 384.0
+offset_bottom = 704.0
+color = Color(0.021022432, 0.031835325, 0.10113392, 1)
+
 [node name="GameHUD" parent="." unique_id=115793931 instance=ExtResource("2_sugp2")]
 
 [node name="Board" type="TileMapLayer" parent="." unique_id=1409761577]

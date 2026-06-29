@@ -4,8 +4,9 @@ const COLS: int = 10
 const ROWS: int = 20
 
 const MOVEMENT_DIRECTIONS: Array[Vector2i] = [Vector2i.LEFT, Vector2i.DOWN, Vector2i.RIGHT]
-
 const START_POS: Vector2i = Vector2i(5, 1)
+
+const CLEAR_REWARD: int = 100
 
 var current_pos: Vector2i
 
@@ -19,7 +20,6 @@ var i_shape: Array = [
 	# 270°
 	[Vector2i(1,0), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3)]
 ]
-
 var t_shape: Array = [
 	# 0°
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(2,0), Vector2i(1,1)],
@@ -30,14 +30,12 @@ var t_shape: Array = [
 	# 270°
 	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(1,2)]
 ]
-
 var o_shape: Array = [
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)]
 ]
-
 var z_shape: Array = [
 	# 0°
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(1,1), Vector2i(2,1)],
@@ -48,7 +46,6 @@ var z_shape: Array = [
 	# 270°
 	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(0,2)]
 ]
-
 var s_shape: Array = [
 	# 0°
 	[Vector2i(1,0), Vector2i(2,0), Vector2i(0,1), Vector2i(1,1)],
@@ -59,7 +56,6 @@ var s_shape: Array = [
 	# 270°
 	[Vector2i(0,0), Vector2i(0,1), Vector2i(1,1), Vector2i(1,2)]
 ]
-
 var l_shape: Array = [
 	# 0°
 	[Vector2i(2,0), Vector2i(0,1), Vector2i(1,1), Vector2i(2,1)],
@@ -70,7 +66,6 @@ var l_shape: Array = [
 	# 270°
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(1,1), Vector2i(1,2)]
 ]
-
 var j_shape: Array = [
 	# 0°
 	[Vector2i(0,0), Vector2i(0,1), Vector2i(1,1), Vector2i(2,1)],
@@ -93,40 +88,62 @@ var active_shape: Array = []
 var fall_timer: float = 0
 var fall_interval: float = 1.0
 var fast_fall: float = 10.0
+var slam_fall: float = 100000.0
 
 var tile_id: int = 0
 var piece_atlas: Vector2i
 var next_piece_atlas: Vector2i
 
+var is_game_running: bool
+var score: int
+
 @onready var board_layer: TileMapLayer = $Board
 @onready var active_layer: TileMapLayer = $Active
+@onready var game_over_label: RichTextLabel = $GameHUD/GameOverLabel
+@onready var start_button: Button = $GameHUD/StartButton
+@onready var score_label: Label = $GameHUD/ScoreLabel
 
 func _ready() -> void:
-	start_new_game()
+	is_game_running = false
+	game_over_label.visible = false
+	start_button.pressed.connect(start_new_game)
+
 
 func _physics_process(delta: float) -> void:
-	var movement_dir: Vector2i = Vector2i.ZERO
-	var current_fall_interval: float = fall_interval
-	if Input.is_action_just_pressed("ui_left"):
-		movement_dir = Vector2i.LEFT
-	elif Input.is_action_just_pressed("ui_right"):
-		movement_dir = Vector2i.RIGHT
-	
-	if movement_dir != Vector2i.ZERO:
-		move_shape(movement_dir)
-	
-	if Input.is_action_just_pressed("ui_up"):
-		rotate_shape()
-	
-	if Input.is_action_pressed("ui_down"):
-		current_fall_interval /= fast_fall
-	fall_timer  += delta
-	if fall_timer >= current_fall_interval:
-		move_shape(Vector2i.DOWN)
-		fall_timer = 0
+	if is_game_running:
+		var movement_dir: Vector2i = Vector2i.ZERO
+		var current_fall_interval: float = fall_interval
+		if Input.is_action_just_pressed("ui_left"):
+			movement_dir = Vector2i.LEFT
+		elif Input.is_action_just_pressed("ui_right"):
+			movement_dir = Vector2i.RIGHT
+		
+		if movement_dir != Vector2i.ZERO:
+			move_shape(movement_dir)
+		
+		if Input.is_action_just_pressed("ui_up"):
+			rotate_shape()
+		
+		if Input.is_action_pressed("ui_down"):
+			current_fall_interval /= fast_fall
+		if Input.is_action_pressed("Slam"):
+			current_fall_interval /= slam_fall
+		
+		fall_timer  += delta
+		if fall_timer >= current_fall_interval:
+			move_shape(Vector2i.DOWN)
+			fall_timer = 0
 
 
 func start_new_game() -> void:
+	score = 0
+	score_label.text = "Score:\n0"
+	start_button.visible = false
+	game_over_label.visible = false
+	is_game_running = true
+	clear_shape()
+	clear_board()
+	clear_next_shape_preview()
 	current_shape_type = choose_shape()
 	piece_atlas = Vector2i(all_shapes.find(current_shape_type), 0)
 	next_shape_type = choose_shape()
@@ -186,6 +203,7 @@ func move_shape(direction: Vector2i) -> void:
 			next_piece_atlas = Vector2i(all_shapes.find(next_shape_type), 0)
 			clear_next_shape_preview()
 			initialize_shape()
+			is_game_over()
 
 func land_shape() -> void:
 	for i in active_shape:
@@ -201,6 +219,8 @@ func check_rows() -> void:
 				cells_filled += 1
 		if cells_filled == COLS:
 			shift_rows(row)
+			score += CLEAR_REWARD
+			score_label.text = "Score:\n" + str(score)
 		else:
 			row -= 1
 
@@ -213,6 +233,11 @@ func shift_rows(row) -> void:
 				board_layer.erase_cell(Vector2i(j + 1, i))
 			else:
 				board_layer.set_cell(Vector2i(j + 1, i), tile_id, atlas)
+
+func clear_board() -> void:
+	for i in range(ROWS):
+		for j in range(COLS):
+			board_layer.erase_cell(Vector2i(j + 1, i + 1))
 
 
 func is_valid_move(new_pos: Vector2i) -> bool:
@@ -235,3 +260,11 @@ func is_within_bounds(pos: Vector2i) -> bool:
 		return false
 	
 	return board_layer.get_cell_source_id(pos) == -1
+
+func is_game_over() -> void:
+	for i in active_shape:
+		if not is_within_bounds(i + current_pos):
+			land_shape()
+			game_over_label.visible = true
+			start_button.visible = true
+			is_game_running = false
