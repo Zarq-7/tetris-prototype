@@ -25,6 +25,8 @@ gdscript/warnings/unsafe_call_argument=1
 
 [display]
 
+window/size/viewport_width=620
+window/size/viewport_height=700
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 
