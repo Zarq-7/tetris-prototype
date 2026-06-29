@@ -10,46 +10,76 @@ const START_POS: Vector2i = Vector2i(5, 1)
 var current_pos: Vector2i
 
 var i_shape: Array = [
-	[Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)], # 0 degrees
-	[Vector2i(2, 0), Vector2i(2, 1), Vector2i(2, 2), Vector2i(2, 3)], # 90 degrees
-	[Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)], # 180 degrees
-	[Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(1, 3)] # 270 degrees
+	# 0°
+	[Vector2i(0,1), Vector2i(1,1), Vector2i(2,1), Vector2i(3,1)],
+	# 90°
+	[Vector2i(2,0), Vector2i(2,1), Vector2i(2,2), Vector2i(2,3)],
+	# 180°
+	[Vector2i(0,2), Vector2i(1,2), Vector2i(2,2), Vector2i(3,2)],
+	# 270°
+	[Vector2i(1,0), Vector2i(1,1), Vector2i(1,2), Vector2i(1,3)]
 ]
+
 var t_shape: Array = [
+	# 0°
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(2,0), Vector2i(1,1)],
-	[Vector2i(0,1), Vector2i(1,0), Vector2i(1,1), Vector2i(1,2)],
-	[Vector2i(0,1), Vector2i(1,0), Vector2i(1,1), Vector2i(2,1)],
-	[Vector2i(1,0), Vector2i(1,1), Vector2i(1,2), Vector2i(2,1)]
+	# 90°
+	[Vector2i(1,0), Vector2i(1,1), Vector2i(2,1), Vector2i(1,2)],
+	# 180°
+	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(2,1)],
+	# 270°
+	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(1,2)]
 ]
+
 var o_shape: Array = [
-	[Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)],
-	[Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)],
-	[Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)],
-	[Vector2i(0, 0), Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1)]
+	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
+	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
+	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
+	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)]
 ]
+
 var z_shape: Array = [
-	[Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, 1), Vector2i(2, 1)],
-	[Vector2i(2, 0), Vector2i(1, 1), Vector2i(2, 1), Vector2i(1, 2)],
-	[Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 2)],
-	[Vector2i(1, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(0, 2)]
+	# 0°
+	[Vector2i(0,0), Vector2i(1,0), Vector2i(1,1), Vector2i(2,1)],
+	# 90°
+	[Vector2i(2,0), Vector2i(1,1), Vector2i(2,1), Vector2i(1,2)],
+	# 180°
+	[Vector2i(0,1), Vector2i(1,1), Vector2i(1,2), Vector2i(2,2)],
+	# 270°
+	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(0,2)]
 ]
+
 var s_shape: Array = [
-	[Vector2i(1, 0), Vector2i(2, 0), Vector2i(0, 1), Vector2i(1, 1)],
-	[Vector2i(1, 0), Vector2i(1, 1), Vector2i(2, 1), Vector2i(2, 2)],
-	[Vector2i(1, 1), Vector2i(2, 1), Vector2i(0, 2), Vector2i(1, 2)],
-	[Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(1, 2)]
+	# 0°
+	[Vector2i(1,0), Vector2i(2,0), Vector2i(0,1), Vector2i(1,1)],
+	# 90°
+	[Vector2i(1,0), Vector2i(1,1), Vector2i(2,1), Vector2i(2,2)],
+	# 180°
+	[Vector2i(1,1), Vector2i(2,1), Vector2i(0,2), Vector2i(1,2)],
+	# 270°
+	[Vector2i(0,0), Vector2i(0,1), Vector2i(1,1), Vector2i(1,2)]
 ]
+
 var l_shape: Array = [
-	[Vector2i(2, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)],
-	[Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2), Vector2i(2, 2)],
-	[Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(0, 2)],
-	[Vector2i(0, 0), Vector2i(1, 0), Vector2i(1, 1), Vector2i(1, 2)]
+	# 0°
+	[Vector2i(2,0), Vector2i(0,1), Vector2i(1,1), Vector2i(2,1)],
+	# 90°
+	[Vector2i(1,0), Vector2i(1,1), Vector2i(1,2), Vector2i(2,2)],
+	# 180°
+	[Vector2i(0,1), Vector2i(1,1), Vector2i(2,1), Vector2i(0,2)],
+	# 270°
+	[Vector2i(0,0), Vector2i(1,0), Vector2i(1,1), Vector2i(1,2)]
 ]
+
 var j_shape: Array = [
-	[Vector2i(0, 0), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1)],
-	[Vector2i(1, 0), Vector2i(2, 0), Vector2i(1, 1), Vector2i(1, 2)],
-	[Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(2, 2)],
-	[Vector2i(1, 0), Vector2i(1, 1), Vector2i(0, 2), Vector2i(1, 2)]
+	# 0°
+	[Vector2i(0,0), Vector2i(0,1), Vector2i(1,1), Vector2i(2,1)],
+	# 90°
+	[Vector2i(1,0), Vector2i(2,0), Vector2i(1,1), Vector2i(1,2)],
+	# 180°
+	[Vector2i(0,1), Vector2i(1,1), Vector2i(2,1), Vector2i(2,2)],
+	# 270°
+	[Vector2i(1,0), Vector2i(1,1), Vector2i(0,2), Vector2i(1,2)]
 ]
 
 var shapes: Array = [i_shape, t_shape, o_shape, z_shape, s_shape, l_shape, j_shape]
@@ -118,7 +148,7 @@ func initialize_shape() -> void:
 	current_pos = START_POS
 	active_shape = current_shape_type[rotation_index]
 	render_shape(active_shape, current_pos, piece_atlas)
-	render_shape(next_shape_type[0], Vector2i(15, 2), next_piece_atlas)
+	render_shape(next_shape_type[0], Vector2i(15, 3), next_piece_atlas)
 
 func render_shape(shape: Array, pos: Vector2i, atlas: Vector2i) -> void:
 	for block in shape:
@@ -149,6 +179,7 @@ func move_shape(direction: Vector2i) -> void:
 	else:
 		if direction == Vector2i.DOWN:
 			land_shape()
+			check_rows()
 			current_shape_type = next_shape_type
 			piece_atlas = next_piece_atlas
 			next_shape_type = choose_shape()
@@ -160,7 +191,29 @@ func land_shape() -> void:
 	for i in active_shape:
 		active_layer.erase_cell(current_pos + i)
 		board_layer.set_cell(current_pos + i, tile_id, piece_atlas)
-		
+
+func check_rows() -> void:
+	var row: int = ROWS
+	while row > 0:
+		var cells_filled: int = 0
+		for i in range(COLS):
+			if not is_within_bounds(Vector2i(i + 1, row)):
+				cells_filled += 1
+		if cells_filled == COLS:
+			shift_rows(row)
+		else:
+			row -= 1
+
+func shift_rows(row) -> void:
+	var atlas: Vector2i
+	for i in range(row, 1, -1):
+		for j in range(COLS):
+			atlas = board_layer.get_cell_atlas_coords(Vector2i(j + 1, i -1))
+			if atlas == Vector2i(-1, -1):
+				board_layer.erase_cell(Vector2i(j + 1, i))
+			else:
+				board_layer.set_cell(Vector2i(j + 1, i), tile_id, atlas)
+
 
 func is_valid_move(new_pos: Vector2i) -> bool:
 	for block in active_shape:

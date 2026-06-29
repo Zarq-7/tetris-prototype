@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://blh1jjh5btxyc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jna2d"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.19434926, 0.19434929, 0.19434911, 1)
+
+[node name="GameHUD" type="CanvasLayer" unique_id=115793931]
+
+[node name="Panel" type="Panel" parent="." unique_id=1516264886]
+custom_minimum_size = Vector2(192, 128)
+offset_left = 416.0
+offset_top = 64.0
+offset_right = 608.0
+offset_bottom = 192.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jna2d")
+
+[node name="Label" type="Label" parent="." unique_id=1636186490]
+offset_left = 416.0
+offset_top = 19.0
+offset_right = 559.0
+offset_bottom = 64.0
+theme_override_font_sizes/font_size = 32
+text = "Incoming"
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=1910336067]
+offset_left = 416.0
+offset_top = 245.0
+offset_right = 537.0
+offset_bottom = 338.0
+theme_override_font_sizes/font_size = 32
+text = "Score:
+0"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1018741667]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.75
+offset_top = -33.5
+offset_right = 136.75
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 48
+text = "Game Over!"
+fit_content = true
