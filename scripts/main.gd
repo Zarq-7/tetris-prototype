@@ -24,11 +24,11 @@ var t_shape: Array = [
 	# 0°
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(2,0), Vector2i(1,1)],
 	# 90°
-	[Vector2i(1,0), Vector2i(1,1), Vector2i(2,1), Vector2i(1,2)],
+	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(1,2)],
 	# 180°
 	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(2,1)],
 	# 270°
-	[Vector2i(1,0), Vector2i(0,1), Vector2i(1,1), Vector2i(1,2)]
+	[Vector2i(1,0), Vector2i(1,1), Vector2i(2,1), Vector2i(1,2)]
 ]
 var o_shape: Array = [
 	[Vector2i(0,0), Vector2i(1,0), Vector2i(0,1), Vector2i(1,1)],
@@ -88,7 +88,6 @@ var active_shape: Array = []
 var fall_timer: float = 0
 var fall_interval: float = 1.0
 var fast_fall: float = 10.0
-var slam_fall: float = 100000.0
 
 var tile_id: int = 0
 var piece_atlas: Vector2i
@@ -126,9 +125,6 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_pressed("ui_down"):
 			current_fall_interval /= fast_fall
-		if Input.is_action_pressed("Slam"):
-			current_fall_interval /= slam_fall
-		
 		fall_timer  += delta
 		if fall_timer >= current_fall_interval:
 			move_shape(Vector2i.DOWN)
@@ -183,7 +179,7 @@ func clear_next_shape_preview() -> void:
 func rotate_shape() -> void:
 	if is_valid_rotation():
 		clear_shape()
-		rotation_index = (rotation_index - 1) % 4
+		rotation_index = (rotation_index + 1) % 4
 		active_shape = current_shape_type[rotation_index]
 		render_shape(active_shape, current_pos, piece_atlas)
 		pass

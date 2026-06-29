@@ -38,6 +38,7 @@ theme_override_font_sizes/font_size = 24
 text = "Incoming"
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=1910336067]
+custom_maximum_size = Vector2(224, 185)
 offset_left = 416.0
 offset_top = 245.0
 offset_right = 640.0
